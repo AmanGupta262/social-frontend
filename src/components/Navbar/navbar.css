@@ -1,0 +1,78 @@
+.navbar-container {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1877f2;
+  position: sticky;
+  top: 0;
+}
+.navbar-left {
+  flex: 3;
+}
+.logo{
+    font-size: 24px;
+    margin-left: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}
+.navbar-center {
+  flex: 5;
+}
+.search-bar{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 30px;
+}
+.search-icon{
+    font-size: 20px !important;
+    margin-left: 10px;
+    padding: 5px;
+}
+.search-input{
+    outline: none;
+    border: none;
+    width: 70%;
+}
+.navbar-right {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+}
+.navbar-links .link{
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.navbar-icons{
+    display: flex;
+}
+.navbar-icon{
+  position: relative;
+  margin-right: 15px;
+}
+.badge{
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: -5px;
+    right: -5px;  
+    line-height: 15px;
+    text-align: center;
+    font-size: 12px;  
+    border-radius: 50%;
+}
+.profile-img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
