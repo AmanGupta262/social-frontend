@@ -1,5 +1,7 @@
-import Feeds from './Feeds/Feeds';
+import Feed from './Feed/Feed';
 import App from './App/App';
-import Navbar from './Navbar/Navbar'
+import Navbar from './Navbar/Navbar';
+import Sidebar from './Sidebar/Sidebar';
+import Rightbar from './Rightbar/Rightbar';
 
-export { Feeds, Navbar, App }
+export { Feed, Navbar, Sidebar, Rightbar, App }

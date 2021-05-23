@@ -1,10 +1,12 @@
 import React from 'react';
+import './feed.css';
 
-class PostList extends React.Component {
+class Feed extends React.Component {
     render() {
         const { posts } = this.props;
         return (
-            <div className="post-list-container">
+            <div className="post-list-container feed">
+                Feed
                 {posts.map(post => {
                     return (<div className="post-wrapper" key={post._id}>
                         <div className="post-header">
@@ -35,4 +37,4 @@ class PostList extends React.Component {
     }
 }
 
-export default PostList;
+export default Feed;

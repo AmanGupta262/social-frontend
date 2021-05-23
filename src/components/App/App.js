@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchPosts } from '../../actions/posts'
-import { Feeds, Navbar } from '..';
+import { Feed, Navbar, Sidebar, Rightbar } from '..';
+import './app.css';
 
 
 class App extends React.Component {
@@ -17,7 +18,11 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
-        <Feeds posts={posts} />
+        <div className="container">
+          <Sidebar />
+          <Feed posts={posts} />
+          <Rightbar />
+        </div>
       </div>
       
     );
