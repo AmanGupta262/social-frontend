@@ -1,0 +1,89 @@
+.post{
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    margin: 1rem;
+    max-width: 500px;
+    border-radius: 10px;
+}
+.post-container{
+    padding: 1.8rem;
+}
+.post-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.post-top .left{
+    display: flex;
+    align-items: center;
+}
+.post-profile-img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.post-user{
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 10px;
+}
+.post-date{
+    font-size: small;
+}
+.post-middle{
+    margin: 20px 0;
+}
+.post-img{
+    margin-top: 20px;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+.post-bottom .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.post-bottom .left{
+    display: flex;
+    align-items: center;
+}
+.post-like-icon{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.post-like-count,
+.post-comment-count{
+    font-size: 15px;
+    cursor: pointer;
+}
+.post-bottom .bottom{
+    margin-top: 10px;
+}
+.post-bottom .bottom-container{
+    display: flex;
+    border-top: 1px solid #e4e6e8;
+    border-bottom: 1px solid #e4e6e8;
+    padding-block: 5px;
+}
+.post-bottom .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 33%;
+    color: darkslategrey !important;
+    padding: 5px;
+    border-radius: 10px;
+    transition: all .3s;
+}
+.post-bottom .btn:hover{
+    background-color: #e4e6e8;
+}
+.post-bottom .icon{
+    margin-right: 5px;
+}

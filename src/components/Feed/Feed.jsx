@@ -1,5 +1,5 @@
 import React from "react";
-import { Share } from "..";
+import { Share, Post } from "..";
 import "./feed.css";
 
 function Feed(props) {
@@ -7,6 +7,7 @@ function Feed(props) {
   return (
     <div className="post-list-container feed">
       <Share />
+      <Post />
       {posts.map((post) => {
         return (
           <div className="post-wrapper" key={post._id}>

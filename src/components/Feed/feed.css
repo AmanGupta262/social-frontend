@@ -2,5 +2,6 @@
     flex: 6;
     margin: 1rem;
     display: flex;
-    justify-content: center;
+    flex-flow: column;
+    align-items: center;
 }
