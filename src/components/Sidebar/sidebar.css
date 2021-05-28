@@ -1,8 +1,10 @@
 .sidebar{
     flex: 2;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 65px);
     overflow-y: auto;
     padding: 10px;
+    position: sticky;
+    top: 65px;
 }
 ::-webkit-scrollbar{
     width: 5px;
