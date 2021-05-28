@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchPosts } from '../../actions/posts'
-import { Feed, Navbar, Sidebar, Rightbar } from '..';
+import { Feed, Navbar, Sidebar, Rightbar, Login } from '..';
 import './app.css';
 
 
@@ -17,11 +17,12 @@ class App extends React.Component {
     console.log("Props: ", this.props);
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="container">
-          <Sidebar />
+          {/* <Sidebar />
           <Feed posts={posts} />
-          <Rightbar />
+          <Rightbar /> */}
+          <Login />
         </div>
       </div>
       
