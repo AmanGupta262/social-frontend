@@ -1,3 +1,59 @@
 .rightbar{
-    flex: 4;
+    flex: 3;
+    height: calc(100vh - 65px);
+    overflow-y: auto;
+    padding: 10px;
+    position: sticky;
+    top: 65px;
+    margin-right: 1rem;
+}
+.rightbar::-webkit-scrollbar{
+    width: 0;
+}
+.rightbar .title{
+    color: #65676b;
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 10px;
+    border-bottom: 2px solid #e4e6e8;
+    padding-left: 0;
+}
+.rightbar .friends,
+.rightbar .users{
+    padding: 0.8rem;
+}
+.rightbar .friend,
+.rightbar .user{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+.friend .left,
+.user .left{
+    display: flex;
+    align-items: center;
+}
+.friend .profile-img,
+.user .profile-img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.friend .name,
+.user .name{
+    color: #000;
+    font-weight: 500;
+}
+.friend .btn,
+.user .btn{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #1877f2;
+    color: #fff;
+    font-size: .85rem;
+    cursor: pointer;
 }

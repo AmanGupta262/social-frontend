@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1877f2;
+  /* background-color: #1877f2; */
+  background-color: white;
   position: sticky;
   top: 0;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -13,10 +14,11 @@
   flex: 3;
 }
 .logo{
-    font-size: 24px;
+    font-size: 28px;
     margin-left: 1.2rem;
     font-weight: bold;
-    color: #fff;
+    color: #1877f2;
+    letter-spacing: 3px;
     cursor: pointer;
 }
 .navbar-center {
@@ -45,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  color: white;
+  color: #65676b;
 }
 .navbar-links .link{
     font-size: 14px;

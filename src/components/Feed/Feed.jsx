@@ -8,6 +8,15 @@ function Feed(props) {
     <div className="post-list-container feed">
       <Share />
       <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
       {posts.map((post) => {
         return (
           <div className="post-wrapper" key={post._id}>
