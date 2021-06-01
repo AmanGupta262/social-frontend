@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { fetchPosts } from '../../actions/posts'
-import { Feed, Navbar, Sidebar, Rightbar, Login, Register } from '..';
+import { Home, Login, Register } from '..';
 import './app.css';
 
 
@@ -18,16 +18,19 @@ class App extends React.Component {
     console.log("Props: ", this.props);
     return (
       <div>
-        {/* <Navbar /> */}
-        <div className="container">
-          <Router>
-            <Switch>
-              <Router exact path="/">
-                
-              </Router>
-            </Switch>
-          </Router>
-        </div>
+        <Router>
+          <Switch>
+            <Router exact path="/">
+              <Home />
+            </Router>
+            <Router path="/login">
+              <Login />
+            </Router>
+            <Router path="/register">
+              <Register />
+            </Router>
+          </Switch>
+        </Router>
       </div>
 
     );

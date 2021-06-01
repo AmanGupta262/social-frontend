@@ -7,5 +7,6 @@ import Share from './Share/Share';
 import Post from './Post/Post';
 import Login from './Login/Login';
 import Register from './Register/Register';
+import Home from './Home/Home'
 
-export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, App}
+export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, Home, App}

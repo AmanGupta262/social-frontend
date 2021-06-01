@@ -17,7 +17,7 @@ function Feed(props) {
       <Post />
       <Post />
       <Post />
-      {posts.map((post) => {
+      {/* {posts.map((post) => {
         return (
           <div className="post-wrapper" key={post._id}>
             <div className="post-header">
@@ -41,7 +41,7 @@ function Feed(props) {
             </div>
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 }
