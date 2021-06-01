@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { fetchPosts } from '../../actions/posts'
 import { Feed, Navbar, Sidebar, Rightbar, Login, Register } from '..';
@@ -19,14 +20,16 @@ class App extends React.Component {
       <div>
         {/* <Navbar /> */}
         <div className="container">
-          {/* <Sidebar />
-          <Feed posts={posts} />
-          <Rightbar /> */}
-          {/* <Login /> */}
-          <Register />
+          <Router>
+            <Switch>
+              <Router exact path="/">
+                
+              </Router>
+            </Switch>
+          </Router>
         </div>
       </div>
-      
+
     );
   }
 }
