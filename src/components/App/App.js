@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { fetchPosts } from '../../actions/posts'
 import { Home, Login, Register } from '..';
@@ -20,15 +20,15 @@ class App extends React.Component {
       <div>
         <Router>
           <Switch>
-            <Router exact path="/">
+            <Route exact path="/">
               <Home />
-            </Router>
-            <Router path="/login">
+            </Route>
+            <Route path="/login">
               <Login />
-            </Router>
-            <Router path="/register">
+            </Route>
+            <Route path="/register">
               <Register />
-            </Router>
+            </Route>
           </Switch>
         </Router>
       </div>
