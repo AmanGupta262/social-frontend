@@ -1,46 +1,40 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import { ContactSupportOutlined } from '@material-ui/icons';
+import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import { fetchPosts } from '../../actions/posts'
+import axios from 'axios';
 import { Home, Login, Register } from '..';
 import './app.css';
 
+function App(props) {
+  const [posts, setPosts] = useState([])
 
-class App extends React.Component {
+  useEffect(() => {
+    const url = 'https://social-nodejs-api.herokuapp.com/api/v1/posts';
+    axios.get(url)
+      .then(res => {
+        const data = res.data;
+        setPosts(data.posts);
+      })
+  }, []);
 
-  componentDidMount() {
-    this.props.dispatch(fetchPosts());
-  }
-
-  render() {
-    const { posts } = this.props;
-    console.log("Props: ", this.props);
-    return (
-      <div>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-
-    );
-  }
+  return (
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home posts={posts} />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
-function mapStateToProps(state) {
-  return {
-    posts: state.posts
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
