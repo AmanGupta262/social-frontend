@@ -1,4 +1,3 @@
-import { ContactSupportOutlined } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -13,7 +12,7 @@ function App(props) {
     const url = 'https://social-nodejs-api.herokuapp.com/api/v1/posts';
     axios.get(url)
       .then(res => {
-        const data = res.data;
+        const data = res.data.data;
         setPosts(data.posts);
       })
   }, []);

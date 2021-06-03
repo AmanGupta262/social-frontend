@@ -8,7 +8,7 @@ function Home(props) {
       <Navbar />
       <div className="container">
         <Sidebar />
-        <Feed />
+        <Feed posts={props.posts} />
         <Rightbar />
       </div>
     </div>

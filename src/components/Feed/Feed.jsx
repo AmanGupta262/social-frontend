@@ -3,19 +3,11 @@ import { Share, Post } from "..";
 import "./feed.css";
 
 function Feed(props) {
+  const { posts } = props;
   return (
     <div className="post-list-container feed">
       <Share />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {posts.map(post => <Post post={post} />)}
     </div>
   );
 }
