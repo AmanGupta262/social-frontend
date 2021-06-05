@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { UPDATE_POSTS } from '../actions';
-import APIUrls from '../helpers/urls';
+import { APIUrls } from '../helpers/urls';
 
 export function fetchPosts(dispatch) {
     return (dispatch) => {

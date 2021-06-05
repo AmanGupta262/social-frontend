@@ -19,7 +19,7 @@ function Post(props) {
               alt=""
               className="post-profile-img"
             />
-            <span className="post-user">{post.user}</span>
+            <span className="post-user">{post.user.name}</span>
             <span className="post-date">{post.createAt}</span>
           </div>
           <div className="right">
