@@ -10,7 +10,7 @@ import {
 function Post(props) {
   const { post } = props;
   return (
-    <div className="post">
+    <div className="post" id={"post-"+post._id}>
       <div className="post-container">
         <div className="post-top">
           <div className="left">
@@ -45,7 +45,9 @@ function Post(props) {
               <span className="post-like-count">{post.likes.length}</span>
             </div>
             <div className="right">
-              <span className="post-comment-count">{post.comments.length} comments</span>
+              <span className="post-comment-count">
+                {post.comments.length} comments
+              </span>
             </div>
           </div>
 
