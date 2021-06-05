@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { UPDATE_POSTS } from '../actions';
+import APIUrls from '../helpers/urls';
 
 export function fetchPosts(dispatch) {
     return (dispatch) => {
-        const url = 'https://social-nodejs-api.herokuapp.com/api/v1/posts';
+        const url = APIUrls.fetchPosts();
         axios.get(url)
             .then(res => {
                 const data = res.data.data;
