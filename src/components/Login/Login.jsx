@@ -1,13 +1,16 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import "./login.css";
 
 function Login(props) {
-  const email = useRef();
-  const password = useRef();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-  const handleSubmit = (e) =>{
-    e.preventDefault();
-  };
+  const handleEmail =(e) => {
+    setEmail(e.target.value);
+  }
+  const handlePassword= (e) => {
+    setPassword(e.target.value);
+  }
   return (
     <div className="login">
       <div className="login-container">
@@ -18,13 +21,13 @@ function Login(props) {
           </span>
         </div>
         <div className="right">
-          <form className="login-box" onSubmit={handleSubmit}>
+          <form className="login-box">
             <input
               type="email"
               placeholder="Email address"
               className="login-input"
               required
-              ref={email}
+              onChange={handleEmail}
             />
             <input
               type="password"
@@ -32,9 +35,9 @@ function Login(props) {
               className="login-input"
               required
               minLength="6"
-              ref={password}
+              onChange={handlePassword}
             />
-            <button type="submit" className="login-btn">Login</button>
+            <div className="login-btn">Login</div>
             <div className="forgot-password">Forgot Password?</div>
             <div className="create-new-acc">Create New Account</div>
           </form>
