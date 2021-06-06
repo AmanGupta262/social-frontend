@@ -8,10 +8,10 @@ export function startLogin() {
         type: LOGIN_START
     }
 }
-export function loginFailed(errorMsg) {
+export function loginFailed(error) {
     return {
         type: LOGIN_FAILED,
-        error: errorMsg
+        error
     }
 }
 export function loginSuccess(user) {
@@ -41,16 +41,14 @@ export function login(email, password) {
             .then(response => response.data)
             .then(data => {
                 console.log(data);
-                if(data.success){
+                if (data.success) {
                     dispatch(loginSuccess(data.data.user));
                     return;
                 }
-                else{
-                    dispatch(loginFailed(data.message));
-                }
             })
             .catch(function (error) {
-                console.log(error);
+                const errorMsg = error.response.data.message;
+                dispatch(loginFailed(errorMsg));
             });
     };
 }

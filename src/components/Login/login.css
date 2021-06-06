@@ -38,7 +38,7 @@
 .login-box{
     margin: auto;
     width: 80%;
-    height: 300px;
+    height: 350px;
     padding: 20px;
     display: flex;
     flex-flow: column;
@@ -49,8 +49,10 @@
 
 }
 .login-error{
-    background-color: rgba(220, 20, 60, 0.5);
+    background-color: #ed143d33;
     padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: .5rem;
     color: crimson;
 }
 .login-input{

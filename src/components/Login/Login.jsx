@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/auth";
 import "./login.css";
 
-function Login(props) {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -19,7 +19,6 @@ function Login(props) {
     dispatch(login(email, password));
   };
   const {error, inProgress} = useSelector(state => state.auth)
-  console.log(error)
   return (
     <div className="container">
       <div className="login">
@@ -31,9 +30,8 @@ function Login(props) {
             </span>
           </div>
           <div className="right">
-            {error && {error}}
             <form className="login-box">
-              {error}
+              {error && <div className="login-error">{error}</div>}
               <input
                 type="email"
                 placeholder="Email address"
@@ -50,15 +48,15 @@ function Login(props) {
                 onChange={handlePassword}
               />
               {inProgress ? (
-                <button
-                  onClick={handleSubmit}
-                  className="login-btn btn"
-                  disabled={inProgress}
-                >
+                <button className="login-btn btn" disabled={inProgress}>
                   Logging in...
                 </button>
               ) : (
-                <button onClick={handleSubmit} className="login-btn btn">
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="login-btn btn"
+                >
                   Login
                 </button>
               )}
