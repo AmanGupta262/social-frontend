@@ -5,7 +5,9 @@ import {
     LOGIN_SUCCESS,
     SIGNUP_START,
     SIGNUP_SUCCESS,
-    SIGNUP_FAILED
+    SIGNUP_FAILED,
+    AUTHENTICATE_USER,
+    LOGOUT
 } from ".";
 import { APIUrls } from "../helpers/urls";
 
@@ -108,4 +110,16 @@ export function signupSuccess(user) {
         type: SIGNUP_SUCCESS,
         user
     };
+}
+
+export function authenticateUser(user){
+    return {
+        type: AUTHENTICATE_USER,
+        user
+    }
+}
+export function logout() {
+    return {
+        type: LOGOUT
+    }
 }
