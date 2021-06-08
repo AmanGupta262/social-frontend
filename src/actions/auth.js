@@ -50,7 +50,7 @@ export function login(email, password) {
                 console.log(data);
                 if (data.success) {
                     dispatch(loginSuccess(data.data.user));
-                    localStorage.setItem('token', data.data.toke);
+                    localStorage.setItem('token', data.data.token);
                     return;
                 }
             })
