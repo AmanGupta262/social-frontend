@@ -1,3 +1,10 @@
+.btn{
+    border:none;
+    outline: none;
+}
+.btn:disabled{
+    cursor: not-allowed;
+}
 .register{
     width: 100vw;
     height: 100vh;
@@ -40,6 +47,13 @@
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
+}
+.register-error{
+    background-color: #ed143d33;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+    color: crimson;
 }
 .register-input{
     height: 50px;

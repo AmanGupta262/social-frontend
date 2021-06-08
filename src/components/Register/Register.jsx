@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../actions/auth";
+import { Link, Redirect } from "react-router-dom";
+import { signup, clearAuthState } from "../../actions/auth";
 import "./register.css";
 
 function Register(props) {
@@ -9,6 +10,17 @@ function Register(props) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
 
+  const dispatch = useDispatch();
+  const { error, inProgress, isLoggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearAuthState());
+    };
+  }, []);
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -21,12 +33,10 @@ function Register(props) {
   const handleConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
-  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signup(email, password, confirmPassword, name));
   };
-  const { error, inProgress } = useSelector((state) => state.auth);
   return (
     <div className="register">
       <div className="register-container">
@@ -80,7 +90,9 @@ function Register(props) {
                 Sign Up
               </button>
             )}
-            <div className="create-new-acc">Login</div>
+            <div className="create-new-acc">
+              <Link to="/login">Login</Link>
+            </div>
           </form>
         </div>
       </div>

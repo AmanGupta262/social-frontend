@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../actions/auth";
+import { Link, Redirect } from "react-router-dom";
+import { clearAuthState, login } from "../../actions/auth";
 import "./login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { error, inProgress, isLoggedIn } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearAuthState());
+    };
+  }, []);
+
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -13,12 +26,10 @@ function Login() {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
-  const {error, inProgress} = useSelector(state => state.auth)
   return (
     <div className="container">
       <div className="login">
@@ -62,7 +73,9 @@ function Login() {
               )}
 
               <div className="forgot-password">Forgot Password?</div>
-              <div className="create-new-acc">Create New Account</div>
+              <div className="create-new-acc">
+                <Link to="/register">Create New Account</Link>
+              </div>
             </form>
           </div>
         </div>

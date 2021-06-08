@@ -7,7 +7,8 @@ import {
     SIGNUP_SUCCESS,
     SIGNUP_FAILED,
     AUTHENTICATE_USER,
-    LOGOUT
+    LOGOUT,
+    CLEAR_AUTH_STATE
 } from ".";
 import { APIUrls } from "../helpers/urls";
 
@@ -123,4 +124,10 @@ export function logout() {
     return {
         type: LOGOUT
     }
+}
+
+export function clearAuthState() {
+  return {
+    type: CLEAR_AUTH_STATE,
+  };
 }
