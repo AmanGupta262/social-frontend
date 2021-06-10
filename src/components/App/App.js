@@ -38,7 +38,6 @@ class App extends Component {
               <Register />
             </Route>
             <PrivateRoute exact component={Profile} path="/profile" />
-            <PrivateRoute exact component={Profile} path="/abc" />
           </Switch>
         </Router>
       </div>

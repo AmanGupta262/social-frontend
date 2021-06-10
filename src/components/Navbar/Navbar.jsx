@@ -16,7 +16,7 @@ function Navbar(props) {
   return (
     <nav className="navbar-container">
       <div className="navbar-left">
-        <span className="logo">social</span>
+        <Link to="/" className="logo">social</Link>
       </div>
       <div className="navbar-center">
         <div className="search-bar">
@@ -30,7 +30,9 @@ function Navbar(props) {
       </div>
       <div className="navbar-right">
         <div className="navbar-links">
-          <span className="link">Home</span>
+          <Link to="/" className="link">
+            Home
+          </Link>
           {!auth.isLoggedIn && (
             <Link to="/register" className="link">
               Register
@@ -63,7 +65,15 @@ function Navbar(props) {
             </div>
           </div>
         )}
-        {auth.isLoggedIn && <img src="" alt="" className="profile-img" />}
+        {auth.isLoggedIn && (
+          <Link to="/profile">
+            <img
+              src="https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""
+              className="profile-img"
+            />
+          </Link>
+        )}
       </div>
     </nav>
   );
