@@ -24,8 +24,6 @@ class App extends Component {
     }
   }
   render() {
-    const { auth } = this.props;
-    console.log(auth.isLoggedIn)
     return (
       <div>
         <Router>
@@ -39,11 +37,8 @@ class App extends Component {
             <Route exact path="/register">
               <Register />
             </Route>
-            <PrivateRoute
-              exact
-              component={Profile}
-              path="/profile"
-            />
+            <PrivateRoute exact component={Profile} path="/profile" />
+            <PrivateRoute exact component={Profile} path="/abc" />
           </Switch>
         </Router>
       </div>

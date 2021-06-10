@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useLocation } from "react-router-dom";
 import { clearAuthState, login } from "../../actions/auth";
 import "./login.css";
 
@@ -8,16 +8,21 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { error, inProgress, isLoggedIn, success } = useSelector((state) => state.auth);
+  const { error, inProgress, isLoggedIn, success } = useSelector(
+    (state) => state.auth
+  );
+  const location = useLocation();
+  const { from } = location.state || { from: "/" };
 
   useEffect(() => {
     return () => {
       dispatch(clearAuthState());
     };
   }, [dispatch]);
-
   if (isLoggedIn) {
-    return <Redirect to="/login" />;
+    console.log("redirected");
+
+    return <Redirect to={from} />;
   }
 
   const handleEmail = (e) => {
