@@ -7,6 +7,8 @@ import Share from './Share/Share';
 import Post from './Post/Post';
 import Login from './Login/Login';
 import Register from './Register/Register';
-import Home from './Home/Home'
+import Home from './Home/Home';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Profile from './Profile/Profile';
 
-export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, Home, App}
+export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, Home, PrivateRoute, Profile, App}

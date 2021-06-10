@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -31,7 +31,6 @@ function Navbar(props) {
       <div className="navbar-right">
         <div className="navbar-links">
           <span className="link">Home</span>
-          <span className="link">Timeline</span>
           {!auth.isLoggedIn && (
             <Link to="/register" className="link">
               Register

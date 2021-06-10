@@ -8,16 +8,16 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { error, inProgress, isLoggedIn } = useSelector((state) => state.auth);
+  const { error, inProgress, isLoggedIn, success } = useSelector((state) => state.auth);
 
   useEffect(() => {
     return () => {
       dispatch(clearAuthState());
     };
-  }, []);
+  }, [dispatch]);
 
   if (isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   }
 
   const handleEmail = (e) => {
@@ -30,6 +30,7 @@ function Login() {
     e.preventDefault();
     dispatch(login(email, password));
   };
+  // const handleGoogleLogin = (e)
   return (
     <div className="container">
       <div className="login">
@@ -43,6 +44,7 @@ function Login() {
           <div className="right">
             <form className="login-box">
               {error && <div className="login-error">{error}</div>}
+              {success && <div className="login-success">{success}</div>}
               <input
                 type="email"
                 placeholder="Email address"
@@ -71,7 +73,6 @@ function Login() {
                   Login
                 </button>
               )}
-
               <div className="forgot-password">Forgot Password?</div>
               <div className="create-new-acc">
                 <Link to="/register">Create New Account</Link>

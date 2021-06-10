@@ -84,7 +84,7 @@ export function signup(email, password, confirmPassword, name) {
             .then((data) => {
                 console.log(data);
                 if (data.success) {
-                    dispatch(signupSuccess(data.data.user));
+                    dispatch(signupSuccess(data.data.user, data.message));
                     return;
                 }
             })
@@ -107,10 +107,11 @@ export function signupFailed(error) {
         error
     };
 }
-export function signupSuccess(user) {
+export function signupSuccess(user, success) {
     return {
         type: SIGNUP_SUCCESS,
-        user
+        user,
+        success
     };
 }
 

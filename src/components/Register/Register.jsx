@@ -11,15 +11,21 @@ function Register(props) {
   const [name, setName] = useState("");
 
   const dispatch = useDispatch();
-  const { error, inProgress, isLoggedIn } = useSelector((state) => state.auth);
+  const { error, inProgress, isLoggedIn, isSignedUp } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     return () => {
       dispatch(clearAuthState());
     };
-  }, []);
+  }, [dispatch]);
+  
   if (isLoggedIn) {
     return <Redirect to="/" />;
+  }
+  if (isSignedUp) {
+    return <Redirect to="/login" />;
   }
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -38,62 +44,68 @@ function Register(props) {
     dispatch(signup(email, password, confirmPassword, name));
   };
   return (
-    <div className="register">
-      <div className="register-container">
-        <div className="left">
-          <h3 className="register-logo">Social</h3>
-          <span className="register-desc">
-            Social helps you connect and share with the people in your life.
-          </span>
-        </div>
-        <div className="right">
-          <form method="post" onSubmit={handleSubmit} className="register-box">
-            {error && <div className="register-error">{error}</div>}
-            <input
-              type="text"
-              placeholder="Name"
-              className="register-input"
-              required
-              onChange={handleName}
-            />
-            <input
-              type="email"
-              placeholder="Email address"
-              className="register-input"
-              required
-              onChange={handleEmail}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="register-input"
-              required
-              onChange={handlePassword}
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              className="register-input"
-              required
-              onChange={handleConfirmPassword}
-            />
-            {inProgress ? (
-              <button className="register-btn btn" disabled={inProgress}>
-                Signning Up...
-              </button>
-            ) : (
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className="register-btn btn"
-              >
-                Sign Up
-              </button>
-            )}
-            <div className="create-new-acc">
-              <Link to="/login">Login</Link>
-            </div>
-          </form>
+    <div className="container">
+      <div className="register">
+        <div className="register-container">
+          <div className="left">
+            <h3 className="register-logo">Social</h3>
+            <span className="register-desc">
+              Social helps you connect and share with the people in your life.
+            </span>
+          </div>
+          <div className="right">
+            <form
+              method="post"
+              onSubmit={handleSubmit}
+              className="register-box"
+            >
+              {error && <div className="register-error">{error}</div>}
+              <input
+                type="text"
+                placeholder="Name"
+                className="register-input"
+                required
+                onChange={handleName}
+              />
+              <input
+                type="email"
+                placeholder="Email address"
+                className="register-input"
+                required
+                onChange={handleEmail}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                className="register-input"
+                required
+                onChange={handlePassword}
+              />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                className="register-input"
+                required
+                onChange={handleConfirmPassword}
+              />
+              {inProgress ? (
+                <button className="register-btn btn" disabled={inProgress}>
+                  Signning Up...
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="register-btn btn"
+                >
+                  Sign Up
+                </button>
+              )}
+              <div className="create-new-acc">
+                <Link to="/login">Login</Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

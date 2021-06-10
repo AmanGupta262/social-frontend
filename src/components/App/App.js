@@ -1,27 +1,31 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import jwtDecode from 'jwt-decode';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import jwtDecode from "jwt-decode";
 import { fetchPosts } from "../../actions/posts";
-import { Home, Login, Register } from '..';
-import './app.css';
-import React, { Component } from 'react';
-import { authenticateUser } from '../../actions/auth';
+import { Home, Login, Register, Profile, PrivateRoute } from "..";
+import "./app.css";
+import React, { Component } from "react";
+import { authenticateUser } from "../../actions/auth";
 
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
 
-    const token = localStorage.getItem('token');
-    if(token){
+    const token = localStorage.getItem("token");
+    if (token) {
       const user = jwtDecode(token);
-      this.props.dispatch(authenticateUser({
-        name: user.name,
-        email: user.email,
-        _id: user._id
-      }));
+      this.props.dispatch(
+        authenticateUser({
+          name: user.name,
+          email: user.email,
+          _id: user._id,
+        })
+      );
     }
   }
   render() {
+    const { auth } = this.props;
+    console.log(auth.isLoggedIn)
     return (
       <div>
         <Router>
@@ -29,12 +33,17 @@ class App extends Component {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/login">
+            <Route exact path="/login">
               <Login />
             </Route>
-            <Route path="/register">
+            <Route exact path="/register">
               <Register />
             </Route>
+            <PrivateRoute
+              exact
+              component={Profile}
+              path="/profile"
+            />
           </Switch>
         </Router>
       </div>
@@ -44,6 +53,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
+    auth: state.auth,
   };
 }
 export default connect(mapStateToProps)(App);
