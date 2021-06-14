@@ -6,6 +6,7 @@ import {
   UPDATE_POSTS,
 } from "../actions";
 import { APIUrls } from "../helpers/urls";
+import { getAuthTokenFromLocalStorage } from "../helpers/utils";
 
 export function updatePosts(posts) {
   return {
@@ -19,7 +20,7 @@ export function fetchFailed(error) {
     error,
   };
 }
-export function createPost(post) {
+export function addPost(post) {
   return {
     type: CREATE_POST,
     post,
@@ -41,6 +42,36 @@ export function fetchPosts() {
         dispatch(updatePosts(data.posts));
       })
       .catch((error) => {
+        const errorMsg = error.response.data.message;
+        dispatch(fetchFailed(errorMsg));
+      });
+  };
+}
+
+export function createPost(content) {
+  return (dispatch) => {
+    const data = JSON.stringify({
+      content,
+    });
+    const config = {
+      method: "post",
+      url: APIUrls.register(),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
+      },
+      data: data,
+    };
+    axios(config)
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          dispatch(addPost(data.data.post));
+          return;
+        }
+      })
+      .catch(function (error) {
         const errorMsg = error.response.data.message;
         dispatch(fetchFailed(errorMsg));
       });
