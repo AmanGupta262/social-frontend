@@ -8,7 +8,7 @@ function Feed(props) {
     <div className="post-list-container feed">
       <Share />
       {isLoading ? (
-        <h4 class="loading">Loading...</h4>
+        <h4 className="loading">Loading...</h4>
       ) : error ? (
         <h4>{error}</h4>
       ) : (

@@ -55,10 +55,10 @@ export function createPost(content) {
     });
     const config = {
       method: "post",
-      url: APIUrls.register(),
+      url: APIUrls.newPost(),
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
+        "Authorization": getAuthTokenFromLocalStorage(),
       },
       data: data,
     };

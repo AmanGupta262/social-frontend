@@ -22,8 +22,10 @@
     cursor: pointer;
 }
 .share-input{
+    resize: none;
     border: none;
     width: 90%;
+    height: 4rem;
     outline: none;
     padding: 0.5rem;
     border-radius: 20px;
