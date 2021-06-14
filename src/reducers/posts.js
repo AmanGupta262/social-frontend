@@ -1,9 +1,34 @@
-import { UPDATE_POSTS } from "../actions";
+import { CLEAR_POST_STATE, CREATE_POST, FETCH_POST_FAILED, UPDATE_POSTS } from "../actions";
 
-export default function posts(state = [], action) {
+const initialPostState = {
+    allPosts: [],
+    isLoading: true,
+    error: ""
+}
+
+export default function posts(state = initialPostState, action) {
     switch(action.type){
         case UPDATE_POSTS:
-            return action.posts;
+            return {
+                ...state,
+                isLoading: false,
+                allPosts: action.posts
+            }
+        case CREATE_POST:
+            return {
+                ...state,
+                allPosts: [action.post, ...state.allPosts],
+            }
+        case FETCH_POST_FAILED:
+            return {
+                ...state,
+                error: action.error,
+            }
+        case CLEAR_POST_STATE:
+            return{
+                ...state,
+                error: ""
+            }
         default:
             return state;
     }

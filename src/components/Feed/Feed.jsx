@@ -3,11 +3,17 @@ import { Share, Post } from "..";
 import "./feed.css";
 
 function Feed(props) {
-  const posts = useSelector((state) => state.posts);
+  const {allPosts, isLoading, error} = useSelector((state) => state.posts);
   return (
     <div className="post-list-container feed">
       <Share />
-      {posts.map(post => <Post post={post} key={post._id} />)}
+      {isLoading ? (
+        <h4 class="loading">Loading...</h4>
+      ) : error ? (
+        <h4>{error}</h4>
+      ) : (
+        allPosts.map((post) => <Post post={post} key={post._id} />)
+      )}
     </div>
   );
 }

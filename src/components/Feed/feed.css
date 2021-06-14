@@ -5,3 +5,7 @@
     flex-flow: column;
     align-items: center;
 }
+.loading{
+    color: darkslategray;
+    margin-top: 1rem;
+}
