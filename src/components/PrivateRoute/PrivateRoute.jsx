@@ -1,12 +1,14 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { getAuthTokenFromLocalStorage } from '../../helpers/utils'
 
 function PrivateRoute({ component: Component,  ...rest }) {
+  const token = getAuthTokenFromLocalStorage();
   return (
     <Route
       {...rest}
       render={(props) =>
-        (localStorage.getItem('token') && localStorage.getItem('token').length > 100 )?
+        (token && token.length > 100 )?
          <Component {...props} /> : 
          <Redirect to={{
            pathname: '/login',
