@@ -2,19 +2,30 @@ import React from "react";
 import {
   MoreVert,
   ThumbUpAltOutlined,
+  ThumbUp,
   ChatBubbleOutlineOutlined,
   ShareOutlined,
 } from "@material-ui/icons";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Comment } from '../';
 import "./post.css";
 
 function Post(props) {
-  const { post } = props;
+  const { post, isLoggedIn } = props;
+  const {_id} = useSelector(state => state.auth.user);
+  const likeCount = post.likes.length;
+
+  const [isLiked, setIsLiked] = useState(post.likes.includes(_id));
+  const [like, setLike] = useState(likeCount);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
+
+  const handleLike = (e) => {
+    setLike(prevState => prevState == 1? 0 : 1);
+    setIsLiked((prevState) => !prevState);
+  }
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -53,7 +64,7 @@ function Post(props) {
                 alt=""
                 className="post-like-icon"
               />
-              <span className="post-like-count">{post.likes.length}</span>
+              <span className="post-like-count">{like}</span>
             </div>
             <div className="right">
               <span className="post-comment-count">
@@ -61,23 +72,30 @@ function Post(props) {
               </span>
             </div>
           </div>
-
-          <div className="bottom">
-            <div className="bottom-container">
-              <span className="like-btn btn">
-                <ThumbUpAltOutlined className="icon" /> Like
-              </span>
-              <span
-                className="comment-btn btn"
-                onClick={() => setShowCommentForm((prevState) => !prevState)}
-              >
-                <ChatBubbleOutlineOutlined className="icon" /> Comment
-              </span>
-              <span className="post-share-btn btn">
-                <ShareOutlined className="icon" /> Share
-              </span>
+          {isLoggedIn && (
+            <div className="bottom">
+              <div className="bottom-container">
+                <span className="like-btn btn" onClick={handleLike}>
+                  {isLiked ? (
+                    <ThumbUp className="icon" color="primary" />
+                  ) : (
+                    <ThumbUpAltOutlined className="icon" />
+                  )}{" "}
+                  Like
+                </span>
+                <span
+                  className="comment-btn btn"
+                  onClick={() => setShowCommentForm((prevState) => !prevState)}
+                >
+                  <ChatBubbleOutlineOutlined className="icon" /> Comment
+                </span>
+                <span className="post-share-btn btn">
+                  <ShareOutlined className="icon" /> Share
+                </span>
+              </div>
             </div>
-          </div>
+          )}
+
           {showCommentForm && (
             <div className=" comment-form" onSubmit={handleComment}>
               <form method="post">
@@ -93,8 +111,8 @@ function Post(props) {
             </div>
           )}
           <div className="comments">
-            {post.comments.map(comment => {
-              return <Comment comment={comment} />
+            {post.comments.map((comment) => {
+              return <Comment key={comment._id} comment={comment} />;
             })}
           </div>
         </div>
