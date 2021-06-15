@@ -1,16 +1,27 @@
 import React from "react";
-import "./post.css";
 import {
   MoreVert,
   ThumbUpAltOutlined,
   ChatBubbleOutlineOutlined,
   ShareOutlined,
 } from "@material-ui/icons";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Comment } from '../';
+import "./post.css";
 
 function Post(props) {
   const { post } = props;
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [comment, setComment] = useState("");
+  const dispatch = useDispatch();
+
+  const handleComment = (e) => {
+    e.preventDefault();
+    e.target.reset()
+  }
   return (
-    <div className="post" id={"post-"+post._id}>
+    <div className="post" id={"post-" + post._id}>
       <div className="post-container">
         <div className="post-top">
           <div className="left">
@@ -56,13 +67,35 @@ function Post(props) {
               <span className="like-btn btn">
                 <ThumbUpAltOutlined className="icon" /> Like
               </span>
-              <span className="comment-btn btn">
+              <span
+                className="comment-btn btn"
+                onClick={() => setShowCommentForm((prevState) => !prevState)}
+              >
                 <ChatBubbleOutlineOutlined className="icon" /> Comment
               </span>
               <span className="post-share-btn btn">
                 <ShareOutlined className="icon" /> Share
               </span>
             </div>
+          </div>
+          {showCommentForm && (
+            <div className=" comment-form" onSubmit={handleComment}>
+              <form method="post">
+                <input
+                  type="text"
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Enter Comment"
+                />
+                <button type="submit" className="comment-submit">
+                  Add
+                </button>
+              </form>
+            </div>
+          )}
+          <div className="comments">
+            {post.comments.map(comment => {
+              return <Comment comment={comment} />
+            })}
           </div>
         </div>
       </div>

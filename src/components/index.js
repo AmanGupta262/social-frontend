@@ -10,5 +10,6 @@ import Register from './Register/Register';
 import Home from './Home/Home';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Profile from './Profile/Profile';
+import Comment from './Comment/Comment';
 
-export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, Home, PrivateRoute, Profile, App}
+export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, Home, PrivateRoute, Profile, Comment, App}
