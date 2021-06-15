@@ -42,6 +42,7 @@ function Register(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signup(email, password, confirmPassword, name));
+    e.target.reset();
   };
   return (
     <div className="container">
@@ -95,7 +96,6 @@ function Register(props) {
               ) : (
                 <button
                   type="submit"
-                  onClick={handleSubmit}
                   className="register-btn btn"
                 >
                   Sign Up

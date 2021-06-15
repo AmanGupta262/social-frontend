@@ -34,6 +34,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
+    e.target.reset();
   };
   // const handleGoogleLogin = (e)
   return (
@@ -47,7 +48,7 @@ function Login() {
             </span>
           </div>
           <div className="right">
-            <form className="login-box">
+            <form className="login-box" onSubmit={handleSubmit}>
               {error && <div className="login-error">{error}</div>}
               {success && <div className="login-success">{success}</div>}
               <input
@@ -62,7 +63,6 @@ function Login() {
                 placeholder="Password"
                 className="login-input"
                 required
-                minLength="6"
                 onChange={handlePassword}
               />
               {inProgress ? (
@@ -70,11 +70,7 @@ function Login() {
                   Logging in...
                 </button>
               ) : (
-                <button
-                  type="submit"
-                  onClick={handleSubmit}
-                  className="login-btn btn"
-                >
+                <button type="submit" className="login-btn btn">
                   Login
                 </button>
               )}
