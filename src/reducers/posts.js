@@ -1,4 +1,4 @@
-import { CLEAR_POST_STATE, CREATE_POST, FETCH_POST_FAILED, UPDATE_POSTS } from "../actions";
+import { CLEAR_POST_STATE, CREATE_POST, FETCH_POST_FAILED, LIKE_POST, UPDATE_POSTS } from "../actions";
 
 const initialPostState = {
     allPosts: [],
@@ -28,6 +28,10 @@ export default function posts(state = initialPostState, action) {
             return{
                 ...state,
                 error: ""
+            }
+        case LIKE_POST:
+            return {
+                ...state,
             }
         default:
             return state;

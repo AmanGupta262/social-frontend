@@ -6,4 +6,5 @@ export const APIUrls = {
   fetchPosts: () => `${API_ROOT}/posts`,
   signup: () => `${API_ROOT}/users/register`,
   newPost: () => `${API_ROOT}/posts/create`,
+  likePost: (postId) => `${API_ROOT}/posts/${postId}/like`,
 };

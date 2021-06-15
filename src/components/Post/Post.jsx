@@ -8,6 +8,7 @@ import {
 } from "@material-ui/icons";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { likePost } from '../../actions/posts'
 import { Comment } from '../';
 import "./post.css";
 
@@ -15,7 +16,7 @@ function Post(props) {
   const { post, isLoggedIn } = props;
   const {_id} = useSelector(state => state.auth.user);
   const likeCount = post.likes.length;
-
+  
   const [isLiked, setIsLiked] = useState(post.likes.includes(_id));
   const [like, setLike] = useState(likeCount);
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -23,8 +24,9 @@ function Post(props) {
   const dispatch = useDispatch();
 
   const handleLike = (e) => {
-    setLike(prevState => prevState == 1? 0 : 1);
+    setLike(prevState => prevState === 1? 0 : 1);
     setIsLiked((prevState) => !prevState);
+    dispatch(likePost(post._id))
   }
 
   const handleComment = (e) => {

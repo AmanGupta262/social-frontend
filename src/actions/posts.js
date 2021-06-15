@@ -3,6 +3,7 @@ import {
   CLEAR_POST_STATE,
   CREATE_POST,
   FETCH_POST_FAILED,
+  LIKE_POST,
   UPDATE_POSTS,
 } from "../actions";
 import { APIUrls } from "../helpers/urls";
@@ -30,6 +31,11 @@ export function clearPostState() {
   return {
     type: CLEAR_POST_STATE,
   };
+}
+export function addLike(){
+  return {
+    type: LIKE_POST,
+  }
 }
 
 export function fetchPosts() {
@@ -76,4 +82,30 @@ export function createPost(content) {
         dispatch(fetchFailed(errorMsg));
       });
   };
+}
+
+export function likePost(postId){
+  return (dispatch) => {
+    const config = {
+      method: "post",
+      url: APIUrls.likePost(postId),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getAuthTokenFromLocalStorage(),
+      },
+    };
+    axios(config)
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          dispatch(addLike());
+          return;
+        }
+      })
+      .catch(function (error) {
+        const errorMsg = error.response.data.message;
+        console.log(errorMsg)
+      });
+  }; 
 }
