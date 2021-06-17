@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  ADD_COMMENT,
   CLEAR_POST_STATE,
   CREATE_POST,
   FETCH_POST_FAILED,
@@ -35,6 +36,14 @@ export function clearPostState() {
 export function addLike(){
   return {
     type: LIKE_POST,
+  }
+}
+
+export function addComment(content, id){
+  return {
+    type: ADD_COMMENT,
+    content,
+    id,
   }
 }
 
@@ -108,4 +117,37 @@ export function likePost(postId){
         console.log(errorMsg)
       });
   }; 
+}
+
+export function createComment(content, post){
+  return (dispatch) => {
+    const data = JSON.stringify({
+      content,
+      post,
+    });
+    const config = {
+      method: "post",
+      url: APIUrls. addComment(),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getAuthTokenFromLocalStorage(),
+      },
+      data,
+    };
+
+    axios(config)
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          dispatch(addComment(content, post));
+          return;
+        }
+      })
+      .catch(function (error) {
+        const errorMsg = error.response.data.message;
+        console.log(errorMsg);
+      });
+
+  };
 }

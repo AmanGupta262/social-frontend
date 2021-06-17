@@ -14,7 +14,7 @@ import "./post.css";
 
 function Post(props) {
   const { post, isLoggedIn } = props;
-  const {_id} = useSelector(state => state.auth.user);
+  const {_id, name} = useSelector(state => state.auth.user);
   const likeCount = post.likes.length;
   
   const [isLiked, setIsLiked] = useState(post.likes.includes(_id));
@@ -43,7 +43,7 @@ function Post(props) {
               alt=""
               className="post-profile-img"
             />
-            <span className="post-user">{post.user.name}</span>
+            <span className="post-user">{post.user.name || name}</span>
             <span className="post-date">{post.createAt}</span>
           </div>
           <div className="right">
@@ -99,8 +99,8 @@ function Post(props) {
           )}
 
           {showCommentForm && (
-            <div className=" comment-form" onSubmit={handleComment}>
-              <form method="post">
+            <div className=" comment-form">
+              <form method="post" onSubmit={handleComment}>
                 <input
                   type="text"
                   onChange={(e) => setComment(e.target.value)}

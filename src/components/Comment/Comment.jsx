@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import './comment.css';
 
 function Comment(props) {
     const {comment} = props;
+    const {name} = useSelector(state => state.auth.user)
     return (
       <>
         <div className="comment d-flex">
@@ -14,7 +16,7 @@ function Comment(props) {
             />
           </div>
           <div className="right">
-            <div className="comment-name">{comment.user.name}</div>
+            <div className="comment-name">{comment.user.name || name}</div>
             <div className="comment-content">{comment.content}</div>
           </div>
         </div>
