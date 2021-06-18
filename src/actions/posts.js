@@ -6,7 +6,6 @@ import {
   FETCH_POST_FAILED,
   LIKE_POST,
   FETCH_ALL_POSTS,
-  FETCH_SINGLE_POST,
 } from "../actions";
 import { APIUrls } from "../helpers/urls";
 import { getAuthTokenFromLocalStorage } from "../helpers/utils";
@@ -45,13 +44,6 @@ export function addComment(content, id){
     type: ADD_COMMENT,
     content,
     id,
-  }
-}
-
-export function fetchSinglePost(post){
-  return {
-    type: FETCH_SINGLE_POST,
-    post
   }
 }
 
@@ -135,7 +127,7 @@ export function createComment(content, post){
     });
     const config = {
       method: "post",
-      url: APIUrls. addComment(),
+      url: APIUrls.addComment(),
       headers: {
         "Content-Type": "application/json",
         Authorization: getAuthTokenFromLocalStorage(),

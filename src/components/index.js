@@ -11,5 +11,6 @@ import Home from './Home/Home';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Profile from './Profile/Profile';
 import Comment from './Comment/Comment';
+import PostDetail from './PostDetail/PostDetail';
 
-export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, Home, PrivateRoute, Profile, Comment, App}
+export { Feed, Navbar, Sidebar, Rightbar, Share, Post, Login, Register, Home, PrivateRoute, Profile, Comment, PostDetail, App}

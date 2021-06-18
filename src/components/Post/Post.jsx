@@ -14,7 +14,7 @@ import { Comment } from "../";
 import "./post.css";
 
 function Post(props) {
-  const { post, isLoggedIn, postId } = props;
+  const { post, isLoggedIn } = props;
   const { _id, name } = useSelector((state) => state.auth.user);
   const likeCount = post.likes.length;
 
@@ -23,19 +23,12 @@ function Post(props) {
   const [isLiked, setIsLiked] = useState(isLikedByUser);
 
   const [like, setLike] = useState(likeCount);
-  const [showCommentForm, setShowCommentForm] = useState(false);
-  const [comment, setComment] = useState("");
   const dispatch = useDispatch();
 
   const handleLike = (e) => {
     setLike((prevState) => (prevState === 1 ? 0 : 1));
     setIsLiked((prevState) => !prevState);
     dispatch(likePost(post._id));
-  };
-
-  const handleComment = (e) => {
-    e.preventDefault();
-    e.target.reset();
   };
   return (
     <div className="post" id={"post-" + post._id}>
@@ -89,40 +82,13 @@ function Post(props) {
                   )}
                   Like
                 </span>
-                {postId ? (
-                  <span
-                    className="comment-btn btn"
-                    onClick={() =>
-                      setShowCommentForm((prevState) => !prevState)
-                    }
-                  >
-                    <ChatBubbleOutlineOutlined className="icon" /> Comment
-                  </span>
-                ) : (
                   <Link className="comment-btn btn" to={`/posts/${post._id}`}>
                     <ChatBubbleOutlineOutlined className="icon" /> Comment
                   </Link>
-                )}
                 <span className="post-share-btn btn">
                   <ShareOutlined className="icon" /> Share
                 </span>
               </div>
-            </div>
-          )}
-
-          {showCommentForm  && (
-            <div className=" comment-form">
-              <form method="post" onSubmit={handleComment}>
-                <input
-                  autoFocus
-                  type="text"
-                  onChange={(e) => setComment(e.target.value)}
-                  placeholder="Enter Comment"
-                />
-                <button type="submit" className="comment-submit">
-                  Add
-                </button>
-              </form>
             </div>
           )}
           <div className="comments">
