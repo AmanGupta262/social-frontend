@@ -28,16 +28,11 @@ class App extends Component {
       <div>
         <Router>
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/register">
-              <Register />
-            </Route>
+            <Route exact component={Home} path="/" />
+            <Route exact component={Login} path="/login" />
+            <Route exact component={Register} path="/register" />
             <PrivateRoute exact component={Profile} path="/profile" />
+            <PrivateRoute exact component={Home} path="/posts/:id" />
           </Switch>
         </Router>
       </div>

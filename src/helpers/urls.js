@@ -8,4 +8,5 @@ export const APIUrls = {
   newPost: () => `${API_ROOT}/posts/create`,
   likePost: (postId) => `${API_ROOT}/posts/${postId}/like`,
   addComment: () => `${API_ROOT}/comments/create`,
+  detailPost: (postId) => `${API_ROOT}/posts/${postId}`,
 };

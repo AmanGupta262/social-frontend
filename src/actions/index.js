@@ -1,7 +1,9 @@
-export const UPDATE_POSTS = "UPDATE_POSTS";
+export const FETCH_ALL_POSTS = "FETCH_ALL_POSTS";
 export const CREATE_POST = "CREATE_POST";
 export const FETCH_POST_FAILED = "FETCH_POST_FAILED";
 export const CLEAR_POST_STATE = "CLEAR_POST_STATE";
+
+export const FETCH_SINGLE_POST = "FETCH_SINGLE_POST";
 
 export const LIKE_POST = "LIKE_POST";
 

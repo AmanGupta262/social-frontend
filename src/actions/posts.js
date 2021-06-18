@@ -5,14 +5,15 @@ import {
   CREATE_POST,
   FETCH_POST_FAILED,
   LIKE_POST,
-  UPDATE_POSTS,
+  FETCH_ALL_POSTS,
+  FETCH_SINGLE_POST,
 } from "../actions";
 import { APIUrls } from "../helpers/urls";
 import { getAuthTokenFromLocalStorage } from "../helpers/utils";
 
 export function updatePosts(posts) {
   return {
-    type: UPDATE_POSTS,
+    type: FETCH_ALL_POSTS,
     posts,
   };
 }
@@ -44,6 +45,13 @@ export function addComment(content, id){
     type: ADD_COMMENT,
     content,
     id,
+  }
+}
+
+export function fetchSinglePost(post){
+  return {
+    type: FETCH_SINGLE_POST,
+    post
   }
 }
 

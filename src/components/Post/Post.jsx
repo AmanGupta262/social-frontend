@@ -7,32 +7,36 @@ import {
   ShareOutlined,
 } from "@material-ui/icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { likePost } from '../../actions/posts'
-import { Comment } from '../';
+import { likePost } from "../../actions/posts";
+import { Comment } from "../";
 import "./post.css";
 
 function Post(props) {
-  const { post, isLoggedIn } = props;
-  const {_id, name} = useSelector(state => state.auth.user);
+  const { post, isLoggedIn, postId } = props;
+  const { _id, name } = useSelector((state) => state.auth.user);
   const likeCount = post.likes.length;
-  
-  const [isLiked, setIsLiked] = useState(post.likes.includes(_id));
+
+  const isLikedByUser =
+    post.likes.findIndex((like) => like._id === _id) > -1 ? true : false;
+  const [isLiked, setIsLiked] = useState(isLikedByUser);
+
   const [like, setLike] = useState(likeCount);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
 
   const handleLike = (e) => {
-    setLike(prevState => prevState === 1? 0 : 1);
+    setLike((prevState) => (prevState === 1 ? 0 : 1));
     setIsLiked((prevState) => !prevState);
-    dispatch(likePost(post._id))
-  }
+    dispatch(likePost(post._id));
+  };
 
   const handleComment = (e) => {
     e.preventDefault();
-    e.target.reset()
-  }
+    e.target.reset();
+  };
   return (
     <div className="post" id={"post-" + post._id}>
       <div className="post-container">
@@ -82,15 +86,23 @@ function Post(props) {
                     <ThumbUp className="icon" color="primary" />
                   ) : (
                     <ThumbUpAltOutlined className="icon" />
-                  )}{" "}
+                  )}
                   Like
                 </span>
-                <span
-                  className="comment-btn btn"
-                  onClick={() => setShowCommentForm((prevState) => !prevState)}
-                >
-                  <ChatBubbleOutlineOutlined className="icon" /> Comment
-                </span>
+                {postId ? (
+                  <span
+                    className="comment-btn btn"
+                    onClick={() =>
+                      setShowCommentForm((prevState) => !prevState)
+                    }
+                  >
+                    <ChatBubbleOutlineOutlined className="icon" /> Comment
+                  </span>
+                ) : (
+                  <Link className="comment-btn btn" to={`/posts/${post._id}`}>
+                    <ChatBubbleOutlineOutlined className="icon" /> Comment
+                  </Link>
+                )}
                 <span className="post-share-btn btn">
                   <ShareOutlined className="icon" /> Share
                 </span>
@@ -98,10 +110,11 @@ function Post(props) {
             </div>
           )}
 
-          {showCommentForm && (
+          {showCommentForm  && (
             <div className=" comment-form">
               <form method="post" onSubmit={handleComment}>
                 <input
+                  autoFocus
                   type="text"
                   onChange={(e) => setComment(e.target.value)}
                   placeholder="Enter Comment"

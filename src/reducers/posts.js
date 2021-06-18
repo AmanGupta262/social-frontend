@@ -1,14 +1,15 @@
-import { CLEAR_POST_STATE, CREATE_POST, FETCH_POST_FAILED, LIKE_POST, UPDATE_POSTS } from "../actions";
+import { CLEAR_POST_STATE, CREATE_POST, FETCH_POST_FAILED, LIKE_POST, FETCH_ALL_POSTS, FETCH_SINGLE_POST } from "../actions";
 
 const initialPostState = {
     allPosts: [],
+    post: {},
     isLoading: true,
     error: ""
 }
 
 export default function posts(state = initialPostState, action) {
     switch(action.type){
-        case UPDATE_POSTS:
+        case FETCH_ALL_POSTS:
             return {
                 ...state,
                 isLoading: false,
@@ -32,6 +33,11 @@ export default function posts(state = initialPostState, action) {
         case LIKE_POST:
             return {
                 ...state,
+            }
+        case FETCH_SINGLE_POST:
+            return {
+                ...state,
+                post: action.post,
             }
         default:
             return state;
