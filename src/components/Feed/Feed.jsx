@@ -15,7 +15,7 @@ function Feed(props) {
   useEffect(() => {
     if (!postId) return;
     dispatch(fetchPost(postId));
-  }, [dispatch]);
+  }, [dispatch, postId]);
 
   if(postId){
     return (

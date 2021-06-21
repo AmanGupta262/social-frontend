@@ -28,7 +28,7 @@ function Post(props) {
   const handleLike = (e) => {
     setLike((prevState) => (prevState === 1 ? 0 : 1));
     setIsLiked((prevState) => !prevState);
-    dispatch(likePost(post._id));
+    dispatch(likePost(post._id, _id, isLiked));
   };
   return (
     <div className="post" id={"post-" + post._id}>
@@ -82,9 +82,9 @@ function Post(props) {
                   )}
                   Like
                 </span>
-                  <Link className="comment-btn btn" to={`/posts/${post._id}`}>
-                    <ChatBubbleOutlineOutlined className="icon" /> Comment
-                  </Link>
+                <Link className="comment-btn btn" to={`/posts/${post._id}`}>
+                  <ChatBubbleOutlineOutlined className="icon" /> Comment
+                </Link>
                 <span className="post-share-btn btn">
                   <ShareOutlined className="icon" /> Share
                 </span>
@@ -92,9 +92,7 @@ function Post(props) {
             </div>
           )}
           <div className="comments">
-            {post.comments.map((comment) => {
-              return <Comment key={comment._id} comment={comment} />;
-            })}
+            {post.comments.length ? <Comment comment={post.comments[0]} /> : ""}
           </div>
         </div>
       </div>

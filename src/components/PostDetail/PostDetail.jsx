@@ -16,7 +16,7 @@ function PostDetail(props) {
   const { post } = props;
   const dispatch = useDispatch();
 
-  const { isLoading } = useSelector(state => state.postDetail);
+  const { isLoading } = useSelector((state) => state.postDetail);
 
   const { _id, name } = useSelector((state) => state.auth.user);
   const likeCount = post.likes.length;
@@ -31,7 +31,7 @@ function PostDetail(props) {
   const handleLike = (e) => {
     setLike((prevState) => (prevState === 1 ? 0 : 1));
     setIsLiked((prevState) => !prevState);
-    dispatch(likePost(post._id));
+    dispatch(likePost(post._id, _id, isLikedByUser));
   };
 
   const handleComment = (e) => {

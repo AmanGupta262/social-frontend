@@ -36,8 +36,17 @@ export default function posts(state = initialPostState, action) {
         error: "",
       };
     case LIKE_POST:
+      const allPosts = [...state.allPosts];
+      const postIndex = allPosts.findIndex(post => post._id === action.postId);
+      const post = allPosts[postIndex];
+      const likes = state.allPosts[postIndex].likes;
+      const index = likes.findIndex(like => like._id === action.userId)
+      !action.liked ? likes.push({_id: action.userId}) : likes.splice(index, 1);
+      post.likes = likes;
+      allPosts.splice(postIndex, 1, post);
       return {
         ...state,
+        allPosts: [...allPosts ]
       };
     default:
       return state;
