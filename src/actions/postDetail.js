@@ -1,4 +1,5 @@
 import { FETCH_SINGLE_START, FETCH_SINGLE_FAILED, FETCH_SINGLE_POST, ADD_COMMENT } from "./";
+import { fetchPosts } from './posts';
 import axios from "axios";
 import { APIUrls } from "../helpers/urls";
 import { getAuthTokenFromLocalStorage } from "../helpers/utils";
@@ -80,6 +81,7 @@ export function createComment(content, post) {
         console.log(data);
         if (data.success) {
           dispatch(addComment(data.data.comment));
+          dispatch(fetchPosts())
           return;
         }
       })
