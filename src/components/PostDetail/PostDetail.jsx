@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { likePost } from "../../actions/posts";
+import { createComment } from "../../actions/postDetail";
 import { Comment } from "../";
 import "../Post/post.css";
 
@@ -36,6 +37,7 @@ function PostDetail(props) {
 
   const handleComment = (e) => {
     e.preventDefault();
+    dispatch(createComment(comment, post._id));
     e.target.reset();
   };
   return (

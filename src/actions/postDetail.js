@@ -1,4 +1,4 @@
-import { FETCH_SINGLE_START, FETCH_SINGLE_FAILED, FETCH_SINGLE_POST } from "./";
+import { FETCH_SINGLE_START, FETCH_SINGLE_FAILED, FETCH_SINGLE_POST, ADD_COMMENT } from "./";
 import axios from "axios";
 import { APIUrls } from "../helpers/urls";
 import { getAuthTokenFromLocalStorage } from "../helpers/utils";
@@ -41,6 +41,45 @@ export function fetchPost(postId) {
         console.log(data);
         if (data.success) {
           dispatch(fetchSinglePost(data.data.post));
+          return;
+        }
+      })
+      .catch(function (error) {
+        const errorMsg = error.response.data.message;
+        console.log(errorMsg);
+      });
+  };
+}
+
+export function addComment(comment) {
+  return {
+    type: ADD_COMMENT,
+    comment,
+  };
+}
+
+export function createComment(content, post) {
+  return (dispatch) => {
+    const data = JSON.stringify({
+      content,
+      post,
+    });
+    const config = {
+      method: "post",
+      url: APIUrls.addComment(),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: getAuthTokenFromLocalStorage(),
+      },
+      data,
+    };
+
+    axios(config)
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          dispatch(addComment(data.data.comment));
           return;
         }
       })

@@ -2,6 +2,7 @@ import {
   FETCH_SINGLE_START,
   FETCH_SINGLE_FAILED,
   FETCH_SINGLE_POST,
+  ADD_COMMENT,
 } from "../actions";
 
 const postDetailInitialState = {
@@ -27,6 +28,13 @@ export default function postDetail(state = postDetailInitialState, action) {
       return {
         ...state,
         error: action.error,
+      };
+    case ADD_COMMENT:
+      const post = {...state.post}
+      post.comments.splice(0, 0, action.comment);
+      return {
+        ...state,
+        post: {...post},
       };
     default:
       return {
