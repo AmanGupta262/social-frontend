@@ -5,7 +5,7 @@ import { fetchPosts } from "../../actions/posts";
 import { Home, Login, Register, Profile, PrivateRoute } from "..";
 import "./app.css";
 import React, { Component } from "react";
-import { authenticateUser } from "../../actions/auth";
+import { authenticateUser, logout } from "../../actions/auth";
 
 class App extends Component {
   componentDidMount() {
@@ -13,14 +13,19 @@ class App extends Component {
 
     const token = localStorage.getItem("token");
     if (token) {
-      const user = jwtDecode(token);
-      this.props.dispatch(
-        authenticateUser({
-          name: user.name,
-          email: user.email,
-          _id: user._id,
-        })
-      );
+      const user = jwtDecode(token, { complete: true });
+      const date = Date.now();
+      if (date > user.exp*1000) {
+        this.props.dispatch(logout());
+      } else {
+        this.props.dispatch(
+          authenticateUser({
+            name: user.name,
+            email: user.email,
+            _id: user._id,
+          })
+        );
+      }
     }
   }
   render() {
