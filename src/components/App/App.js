@@ -16,6 +16,7 @@ class App extends Component {
       const user = jwtDecode(token, { complete: true });
       const date = Date.now();
       if (date > user.exp*1000) {
+        localStorage.removeItem("token");
         this.props.dispatch(logout());
       } else {
         this.props.dispatch(

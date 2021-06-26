@@ -48,7 +48,6 @@ export function login(email, password) {
     axios(config)
       .then((response) => response.data)
       .then((data) => {
-        console.log(data);
         if (data.success) {
           localStorage.setItem("token", data.data.token);
           dispatch(loginSuccess(data.data.user));

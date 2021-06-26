@@ -16,7 +16,6 @@ const initialAuthState = {
   isLoggedIn: false,
   inProgress: false,
   isSignedUp: false,
-  isExpired: false,
   success: "",
 };
 
