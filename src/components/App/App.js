@@ -6,6 +6,7 @@ import { Home, Login, Register, Profile, PrivateRoute } from "..";
 import "./app.css";
 import React, { Component } from "react";
 import { authenticateUser, logout } from "../../actions/auth";
+import { fetchAllUsers } from "../../actions/users";
 
 class App extends Component {
   componentDidMount() {
@@ -29,6 +30,7 @@ class App extends Component {
         );
       }
     }
+    this.props.dispatch(fetchAllUsers());
   }
   render() {
     return (
@@ -48,7 +50,7 @@ class App extends Component {
 }
 function mapStateToProps(state) {
   return {
-    posts: state.posts,
+    // posts: state.posts,
     auth: state.auth,
   };
 }
