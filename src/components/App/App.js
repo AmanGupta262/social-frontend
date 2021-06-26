@@ -23,6 +23,7 @@ class App extends Component {
           authenticateUser({
             name: user.name,
             email: user.email,
+            friends: user.friends,
             _id: user._id,
           })
         );

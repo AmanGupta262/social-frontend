@@ -4,7 +4,7 @@ import './rightbar.css';
 import { useSelector } from 'react-redux';
 
 function Rightbar({profile}) {
-  const {isLoggedIn} = useSelector(state => state.auth);
+  const {isLoggedIn, user} = useSelector(state => state.auth);
   return (
     <aside className="rightbar">
       <div className="rightbar-container">
@@ -12,34 +12,19 @@ function Rightbar({profile}) {
           <div className="friend-container">
             <h4 className="title">Friends</h4>
             <div className="friends">
-              <div className="friend">
-                <div className="left">
-                  <img src="" alt="" className="profile-img" />
-                  <div className="name">Bob</div>
-                </div>
-                <div className="remove-friend btn">Remove</div>
-              </div>
-              <div className="friend">
-                <div className="left">
-                  <img src="" alt="" className="profile-img" />
-                  <div className="name">Bob</div>
-                </div>
-                <div className="remove-friend btn">Remove</div>
-              </div>
-              <div className="friend">
-                <div className="left">
-                  <img src="" alt="" className="profile-img" />
-                  <div className="name">Bob</div>
-                </div>
-                <div className="remove-friend btn">Remove</div>
-              </div>
-              <div className="friend">
-                <div className="left">
-                  <img src="" alt="" className="profile-img" />
-                  <div className="name">Bob</div>
-                </div>
-                <div className="remove-friend btn">Remove</div>
-              </div>
+              {user.friends.length === 0 ? (
+                <h5>No friends to view</h5>
+              ) : (
+                user.friends.map((friend) => (
+                  <div className="friend">
+                    <div className="left">
+                      <img src="" alt="" className="profile-img" />
+                      <div className="name">Bob</div>
+                    </div>
+                    <div className="remove-friend btn">Remove</div>
+                  </div>
+                ))
+              )}             
             </div>
           </div>
         )}

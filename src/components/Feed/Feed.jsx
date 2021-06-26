@@ -17,26 +17,31 @@ function Feed(props) {
     dispatch(fetchPost(postId));
   }, [dispatch, postId]);
 
-  if(postId){
+  if (postId) {
     return (
       <div className="post-list-container feed">
-        {isPostLoading ? <h4 className="loading">Loading...</h4> : <PostDetail post={post} />}
+        {isPostLoading ? (
+          <h4 className="loading">Loading...</h4>
+        ) : (
+          <PostDetail post={post} />
+        )}
       </div>
-    )
-  }
-  else{
+    );
+  } else {
     return (
       <div className="post-list-container feed">
-        <Share />
-      {isLoading ? (
-        <h4 className="loading">Loading...</h4>
-      ) : error ? (
-        <h4>{error}</h4>
-      ) : (
-        allPosts.map((post) => (
-          <Post post={post} isLoggedIn={isLoggedIn} key={post._id} />
-        ))
-      )}
+        {isLoading ? (
+          <h4 className="loading">Loading...</h4>
+        ) : error ? (
+          <h4>{error}</h4>
+        ) : (
+          <>
+            <Share />
+            {allPosts.map((post) => (
+            <Post post={post} isLoggedIn={isLoggedIn} key={post._id} />
+            ))}
+          </>
+        )}
       </div>
     );
   }
