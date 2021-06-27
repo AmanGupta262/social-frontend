@@ -2,6 +2,7 @@ import React from "react";
 import {} from "@material-ui/icons";
 import "./rightbar.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Rightbar({ profile }) {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
@@ -16,10 +17,12 @@ function Rightbar({ profile }) {
               {user.friends.length === 0 ? (
                 <h5>No friends to view</h5>
               ) : (
-                user.friends.map((friend) => (
+                user.friends.slice(0, 4).map((friend) => (
                   <div className="friend">
                     <div className="left">
-                      <img src="" alt="" className="profile-img" />
+                      <Link to={`/${user._id}/profile`}>
+                        <img src="" alt="" className="profile-img" />
+                      </Link>
                       <div className="name">Bob</div>
                     </div>
                     <div className="remove-friend btn">Remove</div>
@@ -37,12 +40,14 @@ function Rightbar({ profile }) {
               {allUsers.length === 0 ? (
                 <h5>No Users to view</h5>
               ) : (
-                allUsers.map(
+                allUsers.slice(0, 4).map(
                   (singleUser) =>
                     singleUser._id !== user._id && (
-                      <div className="user">
+                      <div className="user" key={singleUser._id}>
                         <div className="left">
-                          <img src="" alt="" className="profile-img" />
+                          <Link to={`/${user._id}/profile`}>
+                            <img src="" alt="" className="profile-img" />
+                          </Link>
                           <div className="name">{singleUser.name}</div>
                         </div>
                         <div className="add-friend btn">Add Friend</div>

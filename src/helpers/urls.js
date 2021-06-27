@@ -10,4 +10,5 @@ export const APIUrls = {
   addComment: () => `${API_ROOT}/comments/create`,
   detailPost: (postId) => `${API_ROOT}/posts/${postId}`,
   allUsers: () => `${API_ROOT}/users`,
+  profile: (id) => `${API_ROOT}/users/${id}`,
 };

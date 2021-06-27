@@ -25,5 +25,7 @@ export const LOGOUT = "LOGOUT";
 
 export const CLEAR_AUTH_STATE = "CLEAR_AUTH_STATE";
 
+export const FETCH_START = "FETCH_START";
 export const FETCH_ALL_USERS = "FETCH_ALL_USERS";
 export const FETCH_FRIENDS_OF_USER = "FETCH_FRIENDS_OF_USER";
+export const FETCH_USER_PROFILE = "FETCH_USER_PROFILE";

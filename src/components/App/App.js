@@ -40,7 +40,7 @@ class App extends Component {
             <Route exact component={Home} path="/" />
             <Route exact component={Login} path="/login" />
             <Route exact component={Register} path="/register" />
-            <PrivateRoute exact component={Profile} path="/profile" />
+            <PrivateRoute exact component={Profile} path="/:id/profile" />
             <PrivateRoute exact component={Home} path="/posts/:id" />
           </Switch>
         </Router>

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import {Label, EmojiEmotionsOutlined, PermMediaOutlined} from '@material-ui/icons';
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom'
 import { createPost } from '../../actions/posts'
 import "./share.css";
 
 function Share(props) {
-  const {name} = useSelector(state => state.auth.user);
+  const {name, _id} = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
 
   const [content, setContent] = useState("");
@@ -20,7 +21,9 @@ function Share(props) {
       <div className="share-container">
         <form method="post" onSubmit={handleClick}>
           <div className="share-top">
-            <img className="share-profile-img" src="" alt="" />
+            <Link to={`/${_id}/profile`}>
+              <img className="share-profile-img" src="" alt="" />
+            </Link>
             <textarea
               name="content"
               className="share-input"
