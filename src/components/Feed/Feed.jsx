@@ -6,7 +6,7 @@ import { fetchPost } from "../../actions/postDetail";
 import "./feed.css";
 
 function Feed(props) {
-  const { postId } = props;
+  const { postId, posts } = props;
   const { allPosts, isLoading, error } = useSelector((state) => state.posts);
   const { isPostLoading, post } = useSelector((state) => state.postDetail);
   const { isLoggedIn } = useSelector((state) => state.auth);
@@ -37,9 +37,13 @@ function Feed(props) {
         ) : (
           <>
             <Share />
-            {allPosts.map((post) => (
-            <Post post={post} isLoggedIn={isLoggedIn} key={post._id} />
-            ))}
+            {posts
+              ? posts.map((post) => (
+                  <Post post={post} isLoggedIn={isLoggedIn} key={post._id} />
+                ))
+              : allPosts.map((post) => (
+                  <Post post={post} isLoggedIn={isLoggedIn} key={post._id} />
+                ))}
           </>
         )}
       </div>

@@ -45,7 +45,7 @@ function Rightbar({ profile }) {
                     singleUser._id !== user._id && (
                       <div className="user" key={singleUser._id}>
                         <div className="left">
-                          <Link to={`/${user._id}/profile`}>
+                          <Link to={`/${singleUser._id}/profile`}>
                             <img src="" alt="" className="profile-img" />
                           </Link>
                           <div className="name">{singleUser.name}</div>

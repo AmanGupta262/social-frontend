@@ -39,7 +39,7 @@ export default function user(state = initialUserState, action) {
     case FETCH_USER_PROFILE:
       return {
         ...state,
-        profile: action.data,
+        profile: {...action.data},
         inProgress: false,
       };
     default:

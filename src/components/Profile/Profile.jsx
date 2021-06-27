@@ -41,14 +41,14 @@ function Profile(props) {
                 />
               </div>
               <div className="profile-info">
-                <h4 className="profile-info-name">Aman Gupta</h4>
+                <h4 className="profile-info-name">{user.name}</h4>
                 <span className="profile-info-desc">Hello my friends!</span>
               </div>
             </div>
           )}
           <div className="profile-right-bottom">
-            {inProgress ? "" : <Feed />}
-            {inProgress ? "" : <Rightbar profile={true} /> }
+            {inProgress ? "" : <Feed posts={posts} />}
+            {inProgress ? "" : <Rightbar profile={true} friends={friends} /> }
           </div>
         </div>
       </div>
