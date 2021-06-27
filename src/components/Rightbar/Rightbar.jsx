@@ -50,7 +50,7 @@ function Rightbar({ profile }) {
                           </Link>
                           <div className="name">{singleUser.name}</div>
                         </div>
-                        <div className="add-friend btn">Add Friend</div>
+                        {isLoggedIn && <div className="add-friend btn">Add Friend</div>}
                       </div>
                     )
                 )
