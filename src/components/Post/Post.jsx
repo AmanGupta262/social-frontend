@@ -26,7 +26,7 @@ function Post(props) {
   const dispatch = useDispatch();
 
   const handleLike = (e) => {
-    setLike((prevState) => (prevState === 1 ? 0 : 1));
+    setLike((prevState) => (isLiked ? prevState - 1 : prevState + 1));
     setIsLiked((prevState) => !prevState);
     dispatch(likePost(post._id, _id, isLiked));
   };

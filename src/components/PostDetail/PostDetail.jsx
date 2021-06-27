@@ -30,7 +30,8 @@ function PostDetail(props) {
   const [comment, setComment] = useState("");
 
   const handleLike = (e) => {
-    setLike((prevState) => (prevState === 1 ? 0 : 1));
+    console.log(isLikedByUser);
+    setLike((prevState) => (isLiked ? prevState - 1 : prevState + 1));
     setIsLiked((prevState) => !prevState);
     dispatch(likePost(post._id, _id, isLikedByUser));
   };
